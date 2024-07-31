@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react"
 import { nanoid } from "nanoid"
-import { TodoContext } from "../context/TodoContext.js"
+import { TodoContext } from "../contexts/TodoContext.js"
 
 function InputBox() {
     const { Todos, setTodos } = useContext(TodoContext)

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
-import InputBox from "./components/InputBox.jsx"
-import Todo from "./components/Todo.jsx"
-import { TodoContext } from "./context/TodoContext.js"
+import { Todo, InputBox } from "./components/index.js"
+import { TodoContext, UserContext } from "./contexts/index.js"
 
 function App() {
     const [Todos, setTodos] = useState(() => {
@@ -17,16 +16,20 @@ function App() {
         }
     })
 
+    const [User, setUser] = useState({})
+
     useEffect(() => {
         localStorage.setItem("Todos", JSON.stringify(Todos))
     }, [Todos])
 
     return (
-        <TodoContext.Provider value={{ Todos, setTodos }}>
-            <InputBox />
+        <UserContext.Provider value={{ User, setUser }}>
+            <TodoContext.Provider value={{ Todos, setTodos }}>
+                <InputBox />
 
-            <Todo />
-        </TodoContext.Provider>
+                <Todo />
+            </TodoContext.Provider>
+        </UserContext.Provider>
     )
 }
 
